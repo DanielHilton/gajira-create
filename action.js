@@ -1,5 +1,6 @@
 const _ = require('lodash')
 const Jira = require('./common/net/Jira')
+const fieldMapFunctions = require('./fieldMapFunctions')
 
 module.exports = class {
   constructor ({ githubEvent, argv, config }) {
@@ -92,13 +93,19 @@ module.exports = class {
       .map(([key, value]) => ({
         customId: key,
         name: value.name,
+        fieldType: value.schema.type,
       }))
 
     return Object.entries(fields)
-      .map(([key, value]) => ({
-        key: fieldNamesAndCustomIds.find(item => item.name === key).customId,
-        value
-      }))
+      .map(([key, value]) => {
+        const { customId, fieldType } = fieldNamesAndCustomIds
+          .find(item => item.name.toLowerCase() === key.toLowerCase())
+
+        return {
+          key: customId,
+          value: fieldMapFunctions[fieldType](value),
+        }
+      })
   }
 
   preprocessArgs () {

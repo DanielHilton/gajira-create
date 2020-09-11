@@ -1,4 +1,3 @@
-
 const nock = require('nock')
 const Action = require('../action')
 
@@ -26,6 +25,11 @@ test(`Should create an issue with custom fields mapped to their IDs`, async () =
       description: 'This is description {{ event.ref }}',
       fields: {
         Severity: '1 - Critical',
+        'Affected Services': [
+          'Future Gadget #8: PhoneWave (name subject to change)',
+          'Future Gadget #2: Bamboo Helicam',
+        ],
+        'Some text': 'El Psy Congroo',
       },
     },
     config,
@@ -56,20 +60,28 @@ test(`Should create an issue with custom fields mapped to their IDs`, async () =
 
   const result = await action.execute()
 
-  expect(createIssueRequestBody).toEqual({
-    fields: {
-      project: {
-        key: projectKey,
+  expect(createIssueRequestBody)
+    .toEqual({
+      fields: {
+        project: {
+          key: projectKey,
+        },
+        issuetype: {
+          name: issuetypeName,
+        },
+        summary: 'This is summary ref/head/blah',
+        description: 'This is description ref/head/blah',
+        customfield_10021: { value: '1 - Critical' },
+        customfield_10022: [
+          'Future Gadget #8: PhoneWave (name subject to change)',
+          'Future Gadget #2: Bamboo Helicam',
+        ],
+        customfield_10023: 'El Psy Congroo',
       },
-      issuetype: {
-        name: issuetypeName,
-      },
-      summary: 'This is summary ref/head/blah',
-      description: 'This is description ref/head/blah',
-    },
-  })
+    })
 
-  expect(result).toEqual({
-    issue: 'TESTPROJECT-2',
-  })
+  expect(result)
+    .toEqual({
+      issue: 'TESTPROJECT-2',
+    })
 })

@@ -186,6 +186,23 @@
                     ],
                     "allowedValues": []
                 },
+                "customfield_10023": {
+                    "required": false,
+                    "schema": {
+                        "type": "string",
+                        "items": "im-some-text",
+                        "custom": "com.atlassian.jira.jira-incident-management-plugin:some-text",
+                        "customId": 10023
+                    },
+                    "name": "Some text",
+                    "key": "customfield_10023",
+                    "hasDefaultValue": false,
+                    "operations": [
+                        "add",
+                        "set",
+                        "remove"
+                    ]
+                },
                 "assignee": {
                     "required": false,
                     "schema": {
