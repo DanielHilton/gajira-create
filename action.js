@@ -64,9 +64,11 @@ module.exports = class {
       })
     }
 
-    // TODO fields
     if (argv.fields) {
-      providedFields = [...providedFields, ...this.transformFields(argv.fields)]
+      providedFields = [
+        ...providedFields,
+        ...this.transformFields(project, issuetypeName, argv.fields),
+      ]
     }
 
     const payload = providedFields.reduce((acc, field) => {
@@ -82,11 +84,21 @@ module.exports = class {
     return { issue: issue.key }
   }
 
-  transformFields (fields) {
-    return Object.keys(fields).map(fieldKey => ({
-      key: fieldKey,
-      value: fields[fieldKey],
-    }))
+  transformFields (projectMetadata, issueType, fields) {
+    const fieldsForIssueType = projectMetadata.issuetypes
+      .find(it => it.name === issueType).fields
+
+    const fieldNamesAndCustomIds = Object.entries(fieldsForIssueType)
+      .map(([key, value]) => ({
+        customId: key,
+        name: value.name,
+      }))
+
+    return Object.entries(fields)
+      .map(([key, value]) => ({
+        key: fieldNamesAndCustomIds.find(item => item.name === key).customId,
+        value
+      }))
   }
 
   preprocessArgs () {

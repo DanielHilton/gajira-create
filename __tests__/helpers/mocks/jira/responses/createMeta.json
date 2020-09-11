@@ -1,6 +1,14 @@
 {
     "projects": [{
         "issuetypes": [{
+            "self": "https://test.atlassian.net/rest/api/2/issuetype/3",
+            "id": "3",
+            "description": "A test issue type.",
+            "iconUrl": "https://test.atlassian.net/secure/viewavatar?size=medium&avatarId=10318&avatarType=issuetype",
+            "name": "TESTISSUETYPE",
+            "untranslatedName": "TESTISSUETYPE",
+            "subtask": false,
+            "expand": "fields",
             "fields": {
                 "summary": {
                     "required": true,
