@@ -19,6 +19,8 @@ module.exports = class {
     this.preprocessArgs()
 
     const { argv } = this
+    console.log(`Full argv: ${JSON.stringify(argv)}`)
+
     const projectKey = argv.project
     const issuetypeName = argv.issuetype
 
@@ -66,6 +68,7 @@ module.exports = class {
     }
 
     if (argv.fields) {
+      console.log(`Found fields: ${JSON.stringify(argv.fields)}`)
       providedFields = [
         ...providedFields,
         ...this.transformFields(project, issuetypeName, JSON.parse(argv.fields)),
