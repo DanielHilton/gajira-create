@@ -68,7 +68,7 @@ module.exports = class {
     if (argv.fields) {
       providedFields = [
         ...providedFields,
-        ...this.transformFields(project, issuetypeName, argv.fields),
+        ...this.transformFields(project, issuetypeName, JSON.parse(argv.fields)),
       ]
     }
 

@@ -16,6 +16,9 @@ inputs:
   description:
     description: Issue description
     required: false
+  fields:
+    description: Custom fields to be set (supports free text, single-select and multiple select entry types)
+    required: false
 outputs:
   issue:
     description: Key of the newly created issue

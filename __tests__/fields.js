@@ -23,14 +23,14 @@ test(`Should create an issue with custom fields mapped to their IDs`, async () =
       issuetype: issuetypeName,
       summary: 'This is summary {{ event.ref }}',
       description: 'This is description {{ event.ref }}',
-      fields: {
+      fields: JSON.stringify({
         Severity: '1 - Critical',
         'Affected Services': [
           'Future Gadget #8: PhoneWave (name subject to change)',
           'Future Gadget #2: Bamboo Helicam',
         ],
         'Some text': 'El Psy Congroo',
-      },
+      }),
     },
     config,
   })
