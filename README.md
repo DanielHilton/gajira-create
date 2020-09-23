@@ -35,6 +35,12 @@ For examples on how to use this, check out the [gajira-demo](https://github.com/
 - `issuetype` (required) - Type of the issue to be created. Example: 'Incident'
 - `summary` (required) - Issue summary
 - `description` - Issue description
+- `fields` - A JSON object, containing key-value pairs for other issue fields
+    - Only supports `string`, `option`, and `array` custom fields
+    - Optional
+- `ignoredusers` - A comma-separated list of GitHub usernames that **_cannot_** raise an issue
+    - Used for `pull_request` events
+    - Optional
 
 ### Outputs
 - `issue` - Key of the newly created issue

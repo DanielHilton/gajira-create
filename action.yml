@@ -19,6 +19,9 @@ inputs:
   fields:
     description: Custom fields to be set (supports free text, single-select and multiple select entry types)
     required: false
+  ignoredusers:
+    description: Comma-separated list of github usernames which will not raise a JIRA issue
+    required: false
 outputs:
   issue:
     description: Key of the newly created issue

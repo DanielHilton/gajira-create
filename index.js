@@ -50,6 +50,7 @@ function parseArgs () {
     summary: core.getInput('summary'),
     description: core.getInput('description'),
     fields: core.getInput('fields'),
+    ignoredusers: core.getInput('ignoredusers'),
   }
 }
 
