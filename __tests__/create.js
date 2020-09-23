@@ -24,6 +24,7 @@ test(`Should create simple issue with interpolated event field in summary and de
       issuetype: issuetypeName,
       summary: 'This is summary {{ event.ref }}',
       description: 'This is description {{ event.ref }}',
+      components: 'Lego,KNEX,Playmobil',
     },
     config,
   })

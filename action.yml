@@ -16,6 +16,9 @@ inputs:
   description:
     description: Issue description
     required: false
+  components:
+    description: Comma-separated list of components to set
+    required: false
   fields:
     description: Custom fields to be set (supports free text, single-select and multiple select entry types)
     required: false
